@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-challenge-app
+  labels:
+    app: docker-challenge-app
+spec:
+  replicas: 3  # Number of pod replicas
+  selector:
+    matchLabels:
+      app: docker-challenge-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1          # Max number of pods created above the desired replicas during the update
+      maxUnavailable: 0    # Max number of pods that can be unavailable during the update
+  template:
+    metadata:
+      labels:
+        app: docker-challenge-app
+    spec:
+      containers:
+      - name: docker-challenge-app-container
+        image: your-docker-image:latest  # Replace with your Docker image
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "1"
