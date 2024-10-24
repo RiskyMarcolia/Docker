@@ -7,6 +7,5 @@ spec:
     app: docker-challenge-app
   ports:
   - protocol: TCP
-    port: 80        # Exposed service port
-    targetPort: 80  # Container's port to route traffic to
-  type: LoadBalancer  # Expose the service externally (or use NodePort if not on cloud)
+    port: 80            targetPort: 80  
+  type: LoadBalancer  
